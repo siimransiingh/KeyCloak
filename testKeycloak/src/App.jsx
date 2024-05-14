@@ -5,8 +5,8 @@ import useAuth from './hooks/useAuth';
 
 
 function App() {
- const isLogin  = useAuth();
-  return isLogin ? <LoggedIn /> : <NotLoggedIn />;
+  const [isLogin, token] = useAuth();
+  return isLogin ? <LoggedIn token={token} /> : <NotLoggedIn />;
 }
 
 export default App

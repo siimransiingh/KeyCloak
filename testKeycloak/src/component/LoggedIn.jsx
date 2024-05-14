@@ -1,7 +1,7 @@
 import React, { useEffect, useRef,useState } from "react";
 import axios from "axios";
 
-const LoggedIn = () => {
+const LoggedIn = ({ token }) => {
   const [data, setData] = useState(null);
   const isRun = useRef(false);
 
@@ -9,8 +9,15 @@ const LoggedIn = () => {
     if (isRun.current) return;
 
     isRun.current = true;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    
     axios
-      .get("/vegetables")
+      .get("/vegetables",config)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
